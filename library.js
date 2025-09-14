@@ -30,3 +30,27 @@ function addBookToLibrary(name, read) {
   card.appendChild(wasRead);
   card.appendChild(button);
 }
+
+const body = document.querySelector("body");
+
+body.addEventListener("click", (e) => {
+  if (e.target.id === "add-book") {
+    const popup = document.querySelector("dialog");
+    popup.showModal();
+    const submit = document.querySelector("#submit");
+    submit.addEventListener(
+      "click",
+      (e) => {
+        e.preventDefault();
+        popup.close();
+        const nameInput = document.querySelector("#name");
+        const readInput = document.querySelector("#read");
+        let name = nameInput.value;
+        let read = readInput.checked;
+
+        addBookToLibrary(name, read);
+      },
+      { once: true }
+    );
+  }
+});
