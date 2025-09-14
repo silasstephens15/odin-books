@@ -1,0 +1,22 @@
+body {
+  background-color: lightgrey;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 250px);
+  grid-template-rows: repeat(auto-fit, 300px);
+  background-color: lightgrey;
+  gap: 15px;
+  padding: 16px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
