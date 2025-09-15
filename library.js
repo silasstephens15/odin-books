@@ -3,7 +3,7 @@ const library = [];
 function Book(name, read) {
   this.name = name;
   this.read = read;
-  this.id = crypto.randomUUID();
+  this.id = "a" + crypto.randomUUID();
 }
 
 function addBookToLibrary(name, read) {
@@ -12,6 +12,7 @@ function addBookToLibrary(name, read) {
 
   const container = document.querySelector(".card-container");
   const card = document.createElement("div");
+  card.id = newBook.id;
   card.classList.add("card");
   const title = document.createElement("h2");
   title.textContent = name;
@@ -23,6 +24,7 @@ function addBookToLibrary(name, read) {
   }
   const button = document.createElement("button");
   button.id = newBook.id;
+  button.classList.add("delete");
   button.textContent = "Delete";
 
   container.appendChild(card);
@@ -52,5 +54,14 @@ body.addEventListener("click", (e) => {
       },
       { once: true }
     );
+  }
+  if (Array.from(e.target.classList).includes("delete")) {
+    for (let i = 0; i < library.length; i++) {
+      if (e.target.id === library[i].id) {
+        const delCard = document.querySelector(`#${library[i].id}`);
+        delCard.remove();
+        library.splice(i, 1);
+      }
+    }
   }
 });
