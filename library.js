@@ -6,6 +6,16 @@ function Book(name, read) {
   this.id = "a" + crypto.randomUUID();
 }
 
+Book.prototype.changeRead = function () {
+  this.read = !this.read;
+  const wasRead = document.querySelector(`#${this.id} p`);
+  if (this.read) {
+    wasRead.textContent = "Read";
+  } else {
+    wasRead.textContent = "Not yet read";
+  }
+};
+
 function addBookToLibrary(name, read) {
   let newBook = new Book(name, read);
   library.push(newBook);
@@ -22,6 +32,10 @@ function addBookToLibrary(name, read) {
   } else {
     wasRead.textContent = "Not yet read";
   }
+  const toggle = document.createElement("button");
+  toggle.classList.add("toggle");
+  toggle.textContent = "Toggle Read";
+  toggle.id = newBook.id;
   const button = document.createElement("button");
   button.id = newBook.id;
   button.classList.add("delete");
@@ -30,6 +44,7 @@ function addBookToLibrary(name, read) {
   container.appendChild(card);
   card.appendChild(title);
   card.appendChild(wasRead);
+  card.appendChild(toggle);
   card.appendChild(button);
 }
 
@@ -61,6 +76,13 @@ body.addEventListener("click", (e) => {
         const delCard = document.querySelector(`#${library[i].id}`);
         delCard.remove();
         library.splice(i, 1);
+      }
+    }
+  }
+  if (Array.from(e.target.classList).includes("toggle")) {
+    for (let i = 0; i < library.length; i++) {
+      if (e.target.id === library[i].id) {
+        library[i].changeRead();
       }
     }
   }
