@@ -10,14 +10,20 @@
   <body>
     <dialog>
       <form action="">
-        <label for="name">Title: </label>
-        <input type="text" name="name" id="name" />
-        <label for="read">Have you read:</label>
-        <input type="checkbox" name="read" id="read" />
+        <div>
+          <label for="name">Title: </label>
+          <input type="text" name="name" id="name" />
+        </div>
+        <div>
+          <label for="read">Have you read:</label>
+          <input type="checkbox" name="read" id="read" />
+        </div>
         <button type="submit" id="submit">Submit</button>
       </form>
     </dialog>
-    <button id="add-book">Add Book</button>
+    <div class="header">
+      <button id="add-book">Add Book</button>
+    </div>
     <div class="card-container"></div>
   </body>
 </html>
