@@ -1,20 +1,21 @@
 const library = [];
 
-function Book(name, read) {
-  this.name = name;
-  this.read = read;
-  this.id = "a" + crypto.randomUUID();
-}
-
-Book.prototype.changeRead = function () {
-  this.read = !this.read;
-  const wasRead = document.querySelector(`#${this.id} p`);
-  if (this.read) {
-    wasRead.textContent = "Read";
-  } else {
-    wasRead.textContent = "Not yet read";
+class Book {
+  constructor(name, read) {
+    this.name = name;
+    this.read = read;
+    this.id = "a" + crypto.randomUUID();
   }
-};
+  changeRead() {
+    this.read = !this.read;
+    const wasRead = document.querySelector(`#${this.id} p`);
+    if (this.read) {
+      wasRead.textContent = "Read";
+    } else {
+      wasRead.textContent = "Not yet read";
+    }
+  }
+}
 
 function addBookToLibrary(name, read) {
   let newBook = new Book(name, read);
