@@ -60,11 +60,15 @@ body.addEventListener("click", (e) => {
       "click",
       (e) => {
         e.preventDefault();
-        popup.close();
         const nameInput = document.querySelector("#name");
         const readInput = document.querySelector("#read");
+        if (nameInput.validity.valueMissing) {
+          nameInput.setCustomValidity("Enter a title");
+          return;
+        }
         let name = nameInput.value;
         let read = readInput.checked;
+        popup.close();
 
         addBookToLibrary(name, read);
       },
